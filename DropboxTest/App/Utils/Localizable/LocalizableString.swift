@@ -9,6 +9,7 @@
 import Foundation
 
 enum LocalizableString: String {
+    case signIn
     case error
     
     var localized: String {

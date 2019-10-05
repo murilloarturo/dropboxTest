@@ -17,6 +17,7 @@ PODS:
   - RxSwift (5.0.0)
   - RxTest (5.0.0):
     - RxSwift (~> 5)
+  - SnapKit (5.0.1)
   - SwiftyDropbox (5.1.0):
     - Alamofire (~> 4.8.2)
 
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - RxReachability
   - RxSwift (~> 5.0)
   - RxTest
+  - SnapKit (~> 5.0.0)
   - SwiftyDropbox
 
 SPEC REPOS:
@@ -41,6 +43,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxTest
+    - SnapKit
     - SwiftyDropbox
 
 SPEC CHECKSUMS:
@@ -53,8 +56,9 @@ SPEC CHECKSUMS:
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyDropbox: 7ca4961e0340c62c8d6d1ece91d67badfe4c0380
 
-PODFILE CHECKSUM: 113735c704b50c010b4ef3f5d9d840fce1cff06c
+PODFILE CHECKSUM: 9d25013fba03e8f531b6e935e9bb01dd630e7ffd
 
 COCOAPODS: 1.8.1

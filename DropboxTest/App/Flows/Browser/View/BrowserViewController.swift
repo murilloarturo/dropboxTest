@@ -9,9 +9,11 @@
 import UIKit
 
 class BrowserViewController: UIViewController {
+    private let viewModel: BrowserViewModel
 
     init(viewModel: BrowserViewModel) {
-        super.init(nibName: String(describing: BrowserViewController.self), bundle: Bundle.main)
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: Bundle.main)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -21,6 +23,6 @@ class BrowserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 }

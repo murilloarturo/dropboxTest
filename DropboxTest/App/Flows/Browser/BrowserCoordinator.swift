@@ -25,7 +25,8 @@ final class BrowserCoordinator: Coordinator {
     init() { }
     
     func start() {
-        let viewController = BrowserViewController()
+        let viewModel = BrowserViewModel()
+        let viewController = BrowserViewController(viewModel: viewModel)
         navigation?.viewControllers = [viewController]
         
         stateSubject.onNext(.login)

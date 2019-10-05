@@ -2,6 +2,7 @@ source 'https://github.com/cocoapods/specs.git'
 
 platform :ios, '11.0'
 inhibit_all_warnings!
+use_frameworks!
 
 def network
   pod 'Alamofire', '~> 4.8'
@@ -16,6 +17,7 @@ end
 
 def utils
   pod 'SwiftyDropbox'
+  pod 'SnapKit', '~> 5.0.0'
 end
 
 target 'DropboxTest' do
