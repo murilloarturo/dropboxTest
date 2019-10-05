@@ -1,0 +1,38 @@
+source 'https://github.com/cocoapods/specs.git'
+
+platform :ios, '11.0'
+inhibit_all_warnings!
+
+def network
+  pod 'Alamofire', '~> 4.8'
+  pod 'AlamofireImage', '~> 3.5'
+end
+
+def rx
+  pod 'RxSwift',   '~> 5.0'
+  pod 'RxCocoa',   '~> 5.0'
+  pod 'RxReachability'
+end
+
+def utils
+  pod 'SwiftyDropbox'
+end
+
+target 'DropboxTest' do
+  network
+  rx
+  utils
+  
+  target 'DropboxTestTests' do
+    inherit! :search_paths
+    pod 'RxBlocking'
+    pod 'RxTest'
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    puts "#{target.name}"
+  end
+end
+
