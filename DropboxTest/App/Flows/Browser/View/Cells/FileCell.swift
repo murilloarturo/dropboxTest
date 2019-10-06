@@ -11,6 +11,7 @@ import SnapKit
 
 class FileCell: UICollectionViewCell {
     private weak var titleLabel: UILabel?
+    private weak var extensionLabel: UILabel?
     private weak var imageView: UIImageView?
     
     override init(frame: CGRect) {
@@ -27,13 +28,13 @@ class FileCell: UICollectionViewCell {
         guard let entry = item as? EntrySection else { return }
         titleLabel?.text = entry.title
         imageView?.image = entry.icon
+        extensionLabel?.text = entry.fileType?.uppercased()
     }
 }
 
 private extension FileCell {
     func setupUI() {
         backgroundColor = .white
-        
         let imageContainer = UIView(frame: .zero)
         let imageView = UIImageView(frame: .zero)
         self.imageView = imageView
@@ -43,6 +44,19 @@ private extension FileCell {
             maker.height.equalTo(60)
             maker.width.equalTo(80)
             maker.centerX.equalToSuperview()
+            maker.centerY.equalToSuperview()
+        }
+        
+        let extLabel = UILabel(frame: .zero)
+        extLabel.font = AppStyle.font(type: .title)
+        extLabel.textAlignment = .center
+        extLabel.minimumScaleFactor = 0.2
+        extLabel.adjustsFontSizeToFitWidth = true
+        extensionLabel = extLabel
+        imageView.addSubview(extLabel)
+        extLabel.snp.makeConstraints { (maker) in
+            maker.leading.equalTo(15)
+            maker.trailing.equalTo(-15)
             maker.centerY.equalToSuperview()
         }
         

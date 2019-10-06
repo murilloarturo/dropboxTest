@@ -33,6 +33,12 @@ class Entry {
     let isDownloadable: Bool
     let share: ShareInfo?
     
+    var typeExtension: String? {
+        guard type == .file else { return nil }
+        let components = name.components(separatedBy: ".")
+        return components.count > 1 ? components.last : nil
+    }
+    
     init(type: EntryType, name: String, path: String?, size: Int, isDownloadable: Bool, share: ShareInfo? = nil) {
         self.type = type
         self.name = name

@@ -18,6 +18,7 @@ struct UserSection {
 struct EntrySection {
     var icon: UIImage?
     var title: String
+    var fileType: String?
 }
 
 struct FooterSection {

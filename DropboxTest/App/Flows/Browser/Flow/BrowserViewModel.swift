@@ -119,7 +119,7 @@ private extension BrowserViewModel {
             userSection = UserSection(image: imageURL, name: user.name, email: user.email, actionButton: LocalizableString.logout.localized)
         }
         let sections = entries.map { (entry) -> EntrySection in
-            return EntrySection(icon: entry.icon, title: entry.name)
+            return EntrySection(icon: entry.icon, title: entry.name, fileType: entry.typeExtension)
         }
         let footerSection = FooterSection(showMore: service.hasMoreContent, title: totalFilesTitle())
         let directorySection = DirectorySection(user: userSection, entries: sections, footer: footerSection)
