@@ -17,9 +17,26 @@ final class BrowserCoordinator: Coordinator {
     init() { }
     
     func start() {
-        let service = ServiceClient()
-        let viewModel = BrowserViewModel(service: service)
+        let service = ServiceClient(client: Browser.session, path: "", entriesLimit: 20)
+        let viewModel = BrowserViewModel(service: service, showUser: true)
         let viewController = BrowserViewController(viewModel: viewModel)
         navigation?.viewControllers = [viewController]
+        
+        viewModel.state
+            .subscribe(onNext: { [weak self] (state) in
+                self?.handle(state: state)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+private extension BrowserCoordinator {
+    func handle(state: BrowserState) {
+        switch state {
+        case .logout:
+            break
+        case .show(let entry):
+            break
+        }
     }
 }

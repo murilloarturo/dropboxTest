@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import SwiftyDropbox
 
 final class LoginCoordinator: Coordinator {
     weak var baseNavigation: UINavigationController?
@@ -38,6 +37,6 @@ final class LoginCoordinator: Coordinator {
 
 private extension LoginCoordinator {
     func startSignIn() {
-        DropboxWrapper.authorize(from: navigation)
+        Browser.session.authorize(from: navigation)
     }
 }

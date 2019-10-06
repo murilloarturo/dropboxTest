@@ -10,8 +10,12 @@ import Foundation
 
 class User {
     var name: String
+    var email: String
+    var profileImage: String?
     
-    init(name: String) {
+    init(name: String, email: String, profileImage: String?) {
         self.name = name
+        self.email = email
+        self.profileImage = profileImage
     }
 }

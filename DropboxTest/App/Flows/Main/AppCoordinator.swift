@@ -33,7 +33,7 @@ final class AppCoordinator: Coordinator {
 
 private extension AppCoordinator {
     func bind() {
-        DropboxWrapper
+        Browser
             .session
             .authorized
             .subscribe(onNext: { [weak self] (authorized) in

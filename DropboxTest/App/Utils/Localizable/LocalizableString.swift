@@ -10,6 +10,10 @@ import Foundation
 
 enum LocalizableString: String {
     case signIn
+    case home
+    case files
+    case logout
+    case email
     case error
     
     var localized: String {

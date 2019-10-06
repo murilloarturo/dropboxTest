@@ -7,4 +7,8 @@
 */
 
 "signIn" = "Iniciar sesión";
+"home" = "Dropbox";
+"files" = "Archivos";
+"logout" = "Cerrar sesión";
+"email" = "Correo";
 "error" = "Ocurrió un error intente de nuevo más tarde.";
