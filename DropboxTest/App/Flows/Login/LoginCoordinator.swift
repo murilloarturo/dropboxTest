@@ -23,7 +23,7 @@ final class LoginCoordinator: Coordinator {
     func start() {
         let viewController = LoginViewController()
         let navigation = UINavigationController(rootViewController: viewController)
-        baseNavigation?.present(navigation, animated: false, completion: nil)
+        baseNavigation?.present(navigation, animated: true, completion: nil)
         self.navigation = navigation
         viewController.onState
             .subscribe(onNext: { [weak self] (state) in
@@ -38,10 +38,6 @@ final class LoginCoordinator: Coordinator {
 
 private extension LoginCoordinator {
     func startSignIn() {
-        DropboxClientsManager
-            .authorizeFromController(UIApplication.shared,
-                                     controller: navigation) { (url) in
-                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+        DropboxWrapper.authorize(from: navigation)
     }
 }

@@ -12,6 +12,8 @@
 		69814850234946EC008BD841 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981484F234946EC008BD841 /* AppStyle.swift */; };
 		69814852234946FC008BD841 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814851234946FC008BD841 /* ColorPalette.swift */; };
 		6981485523494873008BD841 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981485423494873008BD841 /* UIView+Utils.swift */; };
+		6981485C23495B03008BD841 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981485B23495B03008BD841 /* User.swift */; };
+		6981486623496BC0008BD841 /* DropboxWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981486523496BC0008BD841 /* DropboxWrapper.swift */; };
 		69BBE16A2348F9D500597DE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1692348F9D500597DE1 /* AppDelegate.swift */; };
 		69BBE1712348F9D700597DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69BBE1702348F9D700597DE1 /* Assets.xcassets */; };
 		69BBE1742348F9D700597DE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BBE1722348F9D700597DE1 /* LaunchScreen.storyboard */; };
@@ -24,7 +26,6 @@
 		69BBE1B32349211800597DE1 /* BrowserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1B22349211800597DE1 /* BrowserCoordinator.swift */; };
 		69BBE1B52349212300597DE1 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1B42349212300597DE1 /* LoginCoordinator.swift */; };
 		69BBE1BB23492B5C00597DE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1B923492B5C00597DE1 /* LoginViewController.swift */; };
-		69BBE1BE2349320B00597DE1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1BD2349320B00597DE1 /* LoginViewModel.swift */; };
 		69BBE1C123493E9C00597DE1 /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1C023493E9C00597DE1 /* ServiceClient.swift */; };
 		69BBE1C323493F4D00597DE1 /* BrowserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1C223493F4D00597DE1 /* BrowserViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 		6981484F234946EC008BD841 /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		69814851234946FC008BD841 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		6981485423494873008BD841 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		6981485B23495B03008BD841 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6981486523496BC0008BD841 /* DropboxWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxWrapper.swift; sourceTree = "<group>"; };
 		69BBE1662348F9D500597DE1 /* DropboxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropboxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BBE1692348F9D500597DE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69BBE1702348F9D700597DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,7 +67,6 @@
 		69BBE1B22349211800597DE1 /* BrowserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserCoordinator.swift; sourceTree = "<group>"; };
 		69BBE1B42349212300597DE1 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		69BBE1B923492B5C00597DE1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		69BBE1BD2349320B00597DE1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		69BBE1C023493E9C00597DE1 /* ServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
 		69BBE1C223493F4D00597DE1 /* BrowserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewModel.swift; sourceTree = "<group>"; };
 		6C591E020455C7F475119352 /* Pods-DropboxTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropboxTestTests.debug.xcconfig"; path = "Target Support Files/Pods-DropboxTestTests/Pods-DropboxTestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,6 +110,23 @@
 				6981485423494873008BD841 /* UIView+Utils.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6981485E234966B1008BD841 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6981485B23495B03008BD841 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6981486423496B9F008BD841 /* Dropbox */ = {
+			isa = PBXGroup;
+			children = (
+				6981486523496BC0008BD841 /* DropboxWrapper.swift */,
+				69BBE1C023493E9C00597DE1 /* ServiceClient.swift */,
+			);
+			path = Dropbox;
 			sourceTree = "<group>";
 		};
 		69BBE15D2348F9D500597DE1 = {
@@ -162,7 +181,8 @@
 		69BBE18A2349107900597DE1 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				69BBE1A623491FAB00597DE1 /* Coordinator */,
+				6981486423496B9F008BD841 /* Dropbox */,
+				6981485E234966B1008BD841 /* Model */,
 				69BBE199234911D000597DE1 /* Flows */,
 				69BBE1952349118300597DE1 /* Utils */,
 			);
@@ -181,9 +201,9 @@
 		69BBE1952349118300597DE1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				69BBE1A623491FAB00597DE1 /* Coordinator */,
 				6981485323494866008BD841 /* Extensions */,
 				6981484E234946E2008BD841 /* Style */,
-				69BBE1BF23493E8D00597DE1 /* Network */,
 				69BBE198234911C800597DE1 /* Localizable */,
 			);
 			path = Utils;
@@ -219,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				69BBE1B42349212300597DE1 /* LoginCoordinator.swift */,
-				69BBE1B72349214000597DE1 /* Flow */,
 				69BBE1B62349212B00597DE1 /* View */,
 			);
 			path = Login;
@@ -259,28 +278,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		69BBE1B72349214000597DE1 /* Flow */ = {
-			isa = PBXGroup;
-			children = (
-				69BBE1BD2349320B00597DE1 /* LoginViewModel.swift */,
-			);
-			path = Flow;
-			sourceTree = "<group>";
-		};
 		69BBE1B82349214500597DE1 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
 				69BBE1C223493F4D00597DE1 /* BrowserViewModel.swift */,
 			);
 			path = Flow;
-			sourceTree = "<group>";
-		};
-		69BBE1BF23493E8D00597DE1 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				69BBE1C023493E9C00597DE1 /* ServiceClient.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		6D6E9B807E9038E94EDDA390 /* Frameworks */ = {
@@ -494,6 +497,7 @@
 				69BBE1A823491FB800597DE1 /* Coordinator.swift in Sources */,
 				6981485523494873008BD841 /* UIView+Utils.swift in Sources */,
 				69BBE1B32349211800597DE1 /* BrowserCoordinator.swift in Sources */,
+				6981485C23495B03008BD841 /* User.swift in Sources */,
 				69814850234946EC008BD841 /* AppStyle.swift in Sources */,
 				69BBE1C323493F4D00597DE1 /* BrowserViewModel.swift in Sources */,
 				69BBE1B52349212300597DE1 /* LoginCoordinator.swift in Sources */,
@@ -502,8 +506,8 @@
 				69BBE1B02349210C00597DE1 /* BrowserViewController.swift in Sources */,
 				69814852234946FC008BD841 /* ColorPalette.swift in Sources */,
 				69BBE16A2348F9D500597DE1 /* AppDelegate.swift in Sources */,
+				6981486623496BC0008BD841 /* DropboxWrapper.swift in Sources */,
 				69BBE1972349119200597DE1 /* LocalizableString.swift in Sources */,
-				69BBE1BE2349320B00597DE1 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  LoginViewModel.swift
+//  User.swift
 //  DropboxTest
 //
 //  Created by Arturo Murillo on 10/5/19.
@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class User {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}

@@ -9,26 +9,17 @@
 import Foundation
 import RxSwift
 
-enum BrowserState {
-    case login
-}
-
 final class BrowserCoordinator: Coordinator {
     private let disposeBag = DisposeBag()
     var navigation: UINavigationController? = UINavigationController()
     var childs = [Coordinator]()
-    private var stateSubject = PublishSubject<BrowserState>()
-    var onState: Observable<BrowserState> {
-        return stateSubject.asObservable()
-    }
     
     init() { }
     
     func start() {
-        let viewModel = BrowserViewModel()
+        let service = ServiceClient()
+        let viewModel = BrowserViewModel(service: service)
         let viewController = BrowserViewController(viewModel: viewModel)
         navigation?.viewControllers = [viewController]
-        
-        stateSubject.onNext(.login)
     }
 }

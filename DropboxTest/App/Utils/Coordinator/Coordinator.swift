@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol Coordinator {
-    var childs: [Coordinator] { get set }
-    var navigation: UINavigationController? { get set }
+    var childs: [Coordinator] { get }
+    var navigation: UINavigationController? { get }
     
     func start()
 }

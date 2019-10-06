@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+
+enum BrowserAction {
+    case fetchData
+    case logout
+}
 
 class BrowserViewController: UIViewController {
     private let viewModel: BrowserViewModel
@@ -23,6 +29,21 @@ class BrowserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setup()
+    }
+}
+
+private extension BrowserViewController {
+    func setup() {
+        view.backgroundColor = .white
         
+        let rightButton = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(logout))
+        navigationItem.rightBarButtonItem = rightButton
+        
+        viewModel.action.onNext(.fetchData)
+    }
+    
+    @objc func logout() {
+        viewModel.action.onNext(.logout)
     }
 }

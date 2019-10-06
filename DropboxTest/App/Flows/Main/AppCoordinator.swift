@@ -17,6 +17,8 @@ final class AppCoordinator: Coordinator {
     
     init(window: UIWindow?) {
         self.window = window
+        
+        bind()
     }
     
     func start() {
@@ -25,31 +27,36 @@ final class AppCoordinator: Coordinator {
         navigation = coordinator.navigation
         window?.rootViewController = coordinator.navigation
         window?.makeKeyAndVisible()
-        coordinator
-            .onState
-            .subscribe(onNext: { [weak self] (state) in
-                self?.handle(browserState: state)
-            })
-            .disposed(by: disposeBag)
         coordinator.start()
-    }
-    
-    func userFinishedLogin() {
-        navigation?.dismiss(animated: true, completion: nil)
     }
 }
 
 private extension AppCoordinator {
-    func handle(browserState: BrowserState) {
-        switch browserState {
-        case .login:
-            startLogin()
-        }
+    func bind() {
+        DropboxWrapper
+            .session
+            .authorized
+            .subscribe(onNext: { [weak self] (authorized) in
+                guard let self = self else { return }
+                if authorized {
+                    self.appAuthorized()
+                } else {
+                    self.startLogin()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func startLogin() {
         let coordinator = LoginCoordinator(navigation: navigation)
         childs.append(coordinator)
         coordinator.start()
+    }
+    
+    func appAuthorized() {
+        navigation?.dismiss(animated: true, completion: nil)
+        childs.removeAll { (coordinator) -> Bool in
+            return coordinator is LoginCoordinator
+        }
     }
 }
