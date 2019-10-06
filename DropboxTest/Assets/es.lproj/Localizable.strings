@@ -11,7 +11,9 @@
 "files" = "Archivos";
 "logout" = "Cerrar sesión";
 "email" = "Correo";
-"numberOfFiles" = "%@ Carpetas, %@ Archivos";
+"numberOfFolders" = "%@ Carpetas";
+"numberOfFiles" = "%@ Archivos";
+"folderIsEmpty" = "Esta carpeta está vacía";
 "sureLogout" = "Estás seguro?";
 "ok" = "Ok";
 "no" = "No";

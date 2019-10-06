@@ -151,6 +151,34 @@ extension DropboxWrapper {
             return Disposables.create()
         })
     }
+    
+    func fetchFile(_ file: File) -> Observable<File> {
+        guard let client = currentClient() else { return .error(RequestError.unauthorized) }
+        return Observable.create({ (observable) -> Disposable in
+            let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
+                return file.url
+            }
+            client
+                .files
+                .download(path: file.path, overwrite: true, destination: destination)
+                .response { response, error in
+                    if response != nil {
+                        observable.onNext(file)
+                        observable.onCompleted()
+                    } else if let error = error {
+                        let serviceError = error.serviceError()
+                        self.handle(error: serviceError)
+                        observable.onError(serviceError)
+                        observable.onCompleted()
+                    }
+                }
+                .progress { progressData in
+                    file.progress = progressData.fractionCompleted
+                    observable.onNext(file)
+                }
+            return Disposables.create()
+        })
+    }
 }
 
 //MARK: - Private

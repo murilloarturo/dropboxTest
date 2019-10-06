@@ -11,7 +11,9 @@
 "files" = "Files";
 "logout" = "Logout";
 "email" = "Email";
-"numberOfFiles" = "%@ Folders, %@ Files";
+"numberOfFolders" = "%@ Folders";
+"numberOfFiles" = "%@ Files";
+"folderIsEmpty" = "This folder is Empty";
 "sureLogout" = "Are you sure?";
 "ok" = "Ok";
 "no" = "No";

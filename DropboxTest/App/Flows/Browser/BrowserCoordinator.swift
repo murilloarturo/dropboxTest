@@ -38,7 +38,7 @@ private extension BrowserCoordinator {
                 Browser.session.logout()
             })
         case .show(let entry):
-            showFolderDirectory(entry: entry)
+            entry.type == .folder ? showFolderDirectory(entry: entry) : showFile(entry: entry)
         }
     }
     
@@ -54,5 +54,13 @@ private extension BrowserCoordinator {
                 self?.handle(state: state)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func showFile(entry: Entry) {
+        guard let path = entry.path, entry.type == .file else { return }
+        let service = ServiceClient(client: Browser.session, path: path, entriesLimit: 20)
+        let viewModel = PreviewViewModel(service: service)
+        let viewController = PreviewViewController(viewModel: viewModel)
+        navigation?.pushViewController(viewController, animated: true)
     }
 }

@@ -161,7 +161,17 @@ private extension BrowserViewModel {
             }
         }
         
-        return LocalizableString.numberOfFiles.localized(with: ["\(numberOfFolders)", "\(numberOfFiles)"])
+        let foldersTitle = LocalizableString.numberOfFolders.localized(with: ["\(numberOfFolders)"])
+        let filesTitle = LocalizableString.numberOfFiles.localized(with: ["\(numberOfFiles)"])
+        if numberOfFolders > 0 && numberOfFiles > 0 {
+            return "\(foldersTitle), \(filesTitle)"
+        } else if numberOfFolders > 0 {
+            return foldersTitle
+        } else if numberOfFiles > 0 {
+            return filesTitle
+        } else {
+            return LocalizableString.folderIsEmpty.localized
+        }
     }
 }
 

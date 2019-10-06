@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3E0582E8E711E294A0EBD3B3 /* Pods_DropboxTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A20657F16EE06767FB0853C /* Pods_DropboxTestTests.framework */; };
 		432DF4A9188653A4C7E7CD47 /* Pods_DropboxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE02661155FD1010743D6A6C /* Pods_DropboxTest.framework */; };
+		692CE62D234A97FF002B7DEA /* PreviewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CE62C234A97FF002B7DEA /* PreviewSection.swift */; };
+		692CE630234A99FA002B7DEA /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CE62F234A99FA002B7DEA /* ProgressView.swift */; };
+		69766E1E234A868E00FF36EB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69766E1D234A868E00FF36EB /* File.swift */; };
 		69814850234946EC008BD841 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981484F234946EC008BD841 /* AppStyle.swift */; };
 		69814852234946FC008BD841 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814851234946FC008BD841 /* ColorPalette.swift */; };
 		6981485523494873008BD841 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981485423494873008BD841 /* UIView+Utils.swift */; };
@@ -26,6 +29,8 @@
 		69814883234A32D1008BD841 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814882234A32D1008BD841 /* UIViewController+Alert.swift */; };
 		69814885234A3DED008BD841 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814884234A3DED008BD841 /* Browser.swift */; };
 		69814887234A6E62008BD841 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814886234A6E62008BD841 /* FooterView.swift */; };
+		6981488B234A8376008BD841 /* PreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981488A234A8376008BD841 /* PreviewViewModel.swift */; };
+		6981488E234A8386008BD841 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6981488D234A8386008BD841 /* PreviewViewController.swift */; };
 		69BBE16A2348F9D500597DE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1692348F9D500597DE1 /* AppDelegate.swift */; };
 		69BBE1712348F9D700597DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69BBE1702348F9D700597DE1 /* Assets.xcassets */; };
 		69BBE1742348F9D700597DE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BBE1722348F9D700597DE1 /* LaunchScreen.storyboard */; };
@@ -55,6 +60,9 @@
 /* Begin PBXFileReference section */
 		0A20657F16EE06767FB0853C /* Pods_DropboxTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DropboxTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6653A82CA47A6D359AB37045 /* Pods-DropboxTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropboxTest.release.xcconfig"; path = "Target Support Files/Pods-DropboxTest/Pods-DropboxTest.release.xcconfig"; sourceTree = "<group>"; };
+		692CE62C234A97FF002B7DEA /* PreviewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSection.swift; sourceTree = "<group>"; };
+		692CE62F234A99FA002B7DEA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		69766E1D234A868E00FF36EB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		6981484F234946EC008BD841 /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		69814851234946FC008BD841 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		6981485423494873008BD841 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
@@ -72,6 +80,8 @@
 		69814882234A32D1008BD841 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		69814884234A3DED008BD841 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
 		69814886234A6E62008BD841 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		6981488A234A8376008BD841 /* PreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewModel.swift; sourceTree = "<group>"; };
+		6981488D234A8386008BD841 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		69BBE1662348F9D500597DE1 /* DropboxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropboxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BBE1692348F9D500597DE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69BBE1702348F9D700597DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +129,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		692CE62B234A97E5002B7DEA /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				692CE62C234A97FF002B7DEA /* PreviewSection.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		692CE62E234A99EE002B7DEA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				692CE62F234A99FA002B7DEA /* ProgressView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		6981484E234946E2008BD841 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +172,7 @@
 			children = (
 				6981485B23495B03008BD841 /* User.swift */,
 				69814879234A2134008BD841 /* Directory.swift */,
+				69766E1D234A868E00FF36EB /* File.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +203,28 @@
 				6981487E234A2FD5008BD841 /* DirectorySection.swift */,
 			);
 			path = Section;
+			sourceTree = "<group>";
+		};
+		69814888234A8351008BD841 /* Directory */ = {
+			isa = PBXGroup;
+			children = (
+				69BBE1C223493F4D00597DE1 /* BrowserViewModel.swift */,
+				69BBE1AE2349210C00597DE1 /* BrowserViewController.swift */,
+				6981486723497BE4008BD841 /* BrowserDataSource.swift */,
+				6981487B234A2FBF008BD841 /* Section */,
+				6981486923497C8C008BD841 /* Cells */,
+			);
+			path = Directory;
+			sourceTree = "<group>";
+		};
+		69814889234A8364008BD841 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				6981488A234A8376008BD841 /* PreviewViewModel.swift */,
+				6981488D234A8386008BD841 /* PreviewViewController.swift */,
+				692CE62B234A97E5002B7DEA /* Section */,
+			);
+			path = Preview;
 			sourceTree = "<group>";
 		};
 		69BBE15D2348F9D500597DE1 = {
@@ -250,6 +299,7 @@
 		69BBE1952349118300597DE1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				692CE62E234A99EE002B7DEA /* Components */,
 				69BBE1A623491FAB00597DE1 /* Coordinator */,
 				6981485323494866008BD841 /* Extensions */,
 				6981484E234946E2008BD841 /* Style */,
@@ -297,8 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				69BBE1B22349211800597DE1 /* BrowserCoordinator.swift */,
-				69BBE1B82349214500597DE1 /* Flow */,
-				69BBE1AD234920FA00597DE1 /* View */,
+				69BBE1B82349214500597DE1 /* Modules */,
 			);
 			path = Browser;
 			sourceTree = "<group>";
@@ -311,17 +360,6 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		69BBE1AD234920FA00597DE1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6981487B234A2FBF008BD841 /* Section */,
-				69BBE1AE2349210C00597DE1 /* BrowserViewController.swift */,
-				6981486723497BE4008BD841 /* BrowserDataSource.swift */,
-				6981486923497C8C008BD841 /* Cells */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		69BBE1B62349212B00597DE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,12 +368,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		69BBE1B82349214500597DE1 /* Flow */ = {
+		69BBE1B82349214500597DE1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				69BBE1C223493F4D00597DE1 /* BrowserViewModel.swift */,
+				69814888234A8351008BD841 /* Directory */,
+				69814889234A8364008BD841 /* Preview */,
 			);
-			path = Flow;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		6D6E9B807E9038E94EDDA390 /* Frameworks */ = {
@@ -551,6 +590,7 @@
 				69814887234A6E62008BD841 /* FooterView.swift in Sources */,
 				69814883234A32D1008BD841 /* UIViewController+Alert.swift in Sources */,
 				6981486F23498131008BD841 /* AppFont.swift in Sources */,
+				6981488E234A8386008BD841 /* PreviewViewController.swift in Sources */,
 				6981486823497BE4008BD841 /* BrowserDataSource.swift in Sources */,
 				69BBE1A823491FB800597DE1 /* Coordinator.swift in Sources */,
 				6981485523494873008BD841 /* UIView+Utils.swift in Sources */,
@@ -559,17 +599,21 @@
 				6981485C23495B03008BD841 /* User.swift in Sources */,
 				69814850234946EC008BD841 /* AppStyle.swift in Sources */,
 				6981487F234A2FD5008BD841 /* DirectorySection.swift in Sources */,
+				692CE62D234A97FF002B7DEA /* PreviewSection.swift in Sources */,
 				69BBE1C323493F4D00597DE1 /* BrowserViewModel.swift in Sources */,
 				69814885234A3DED008BD841 /* Browser.swift in Sources */,
 				6981487623498A84008BD841 /* UICollectionView+Nib.swift in Sources */,
 				6981487A234A2134008BD841 /* Directory.swift in Sources */,
 				69BBE1B52349212300597DE1 /* LoginCoordinator.swift in Sources */,
+				6981488B234A8376008BD841 /* PreviewViewModel.swift in Sources */,
 				69BBE1AA23491FD100597DE1 /* AppCoordinator.swift in Sources */,
 				69BBE1BB23492B5C00597DE1 /* LoginViewController.swift in Sources */,
 				69BBE1B02349210C00597DE1 /* BrowserViewController.swift in Sources */,
 				69814852234946FC008BD841 /* ColorPalette.swift in Sources */,
+				69766E1E234A868E00FF36EB /* File.swift in Sources */,
 				69BBE16A2348F9D500597DE1 /* AppDelegate.swift in Sources */,
 				6981487423498912008BD841 /* ColumnFlowLayout.swift in Sources */,
+				692CE630234A99FA002B7DEA /* ProgressView.swift in Sources */,
 				6981486623496BC0008BD841 /* DropboxWrapper.swift in Sources */,
 				69BBE1972349119200597DE1 /* LocalizableString.swift in Sources */,
 			);

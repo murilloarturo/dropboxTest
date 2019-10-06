@@ -14,7 +14,9 @@ enum LocalizableString: String {
     case files
     case logout
     case email
+    case numberOfFolders
     case numberOfFiles
+    case folderIsEmpty
     case sureLogout
     case ok
     case no
