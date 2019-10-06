@@ -11,4 +11,10 @@
 "files" = "Files";
 "logout" = "Logout";
 "email" = "Email";
+"numberOfFiles" = "%@ Folders, %@ Files";
+"sureLogout" = "Are you sure?";
+"ok" = "Ok";
+"no" = "No";
+"yes" = "Yes";
+"oops" = "Ooopss!";
 "error" = "An error ocurred please try again later.";

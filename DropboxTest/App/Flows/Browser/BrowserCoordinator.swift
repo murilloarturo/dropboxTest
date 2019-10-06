@@ -34,7 +34,9 @@ private extension BrowserCoordinator {
     func handle(state: BrowserState) {
         switch state {
         case .logout:
-            break
+            navigation?.presentAlert(title: LocalizableString.sureLogout.localized, message: "", leftButtonTitle: LocalizableString.no.localized, rightButtonTitle: LocalizableString.yes.localized, rightButtonHandler: { (_) in
+                Browser.session.logout()
+            })
         case .show(let entry):
             break
         }

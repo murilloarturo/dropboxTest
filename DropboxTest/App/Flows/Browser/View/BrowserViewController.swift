@@ -12,7 +12,7 @@ import SnapKit
 
 enum BrowserAction {
     case didTapHeader
-    case didSelect(entry: Entry)
+    case didSelect(index: Int)
     case showMore
 }
 
@@ -45,19 +45,36 @@ private extension BrowserViewController {
         setupUI()
         view.backgroundColor = .white
         bind()
-        
+        dataSource.delegate = self
     }
     
     func bind() {
         viewModel
             .items
             .drive(onNext: { [weak self] (items) in
-                guard let self = self else { return }
-                self.title = self.viewModel.title
-                self.dataSource.data = items
-                self.hideLoader()
+                self?.handle(data: items)
             })
             .disposed(by: disposeBag)
+        
+        viewModel
+            .error
+            .subscribe(onNext: { [weak self] (error) in
+                self?.presentAlert(title: LocalizableString.oops.localized,
+                                   message: error.localizedDescription,
+                                   leftButtonTitle: LocalizableString.ok.localized)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func handle(data: DirectorySection?) {
+        if let data = data {
+            self.title = self.viewModel.title
+            self.dataSource.data = data
+            self.hideLoader()
+        } else {
+            self.loaderView?.alpha = 1
+            self.activityIndicator?.startAnimating()
+        }
     }
     
     func hideLoader() {
@@ -111,5 +128,19 @@ private extension BrowserViewController {
     
     @objc func logout() {
         viewModel.handle(action: .didTapHeader)
+    }
+}
+
+extension BrowserViewController: BrowserDataSourceDelegate {
+    func didTapHeader() {
+        viewModel.handle(action: .didTapHeader)
+    }
+    
+    func didSelect(index: Int) {
+        viewModel.handle(action: .didSelect(index: index))
+    }
+    
+    func loadMore() {
+        viewModel.handle(action: .showMore)
     }
 }

@@ -20,7 +20,7 @@ enum RequestError: LocalizedError {
     case unauthorized
     
     var errorDescription: String? {
-        return ""
+        return LocalizableString.error.localized
     }
 }
 
@@ -38,7 +38,7 @@ extension CallError {
 //MARK: - Wrapper
 class DropboxWrapper: BrowserServiceClient {
     private let appKey = "nl8aqdftedjiwh3"
-    private var authorizedSubject = PublishSubject<Bool>()
+    private var authorizedSubject = BehaviorSubject<Bool>(value: true)
     var authorized: Observable<Bool> {
         return authorizedSubject.asObservable()
     }

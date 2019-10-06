@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol BrowserDataSourceDelegate: HeaderViewDelegate {
+    func didSelect(index: Int)
+    func loadMore()
+}
+
 class BrowserDataSource: NSObject {
     weak var collectionView: UICollectionView? {
         didSet {
@@ -19,14 +24,17 @@ class BrowserDataSource: NSObject {
             collectionView?.reloadData()
         }
     }
+    weak var delegate: BrowserDataSourceDelegate?
     
     func setupCollectionView() {
         guard let collectionView = collectionView else { return }
         collectionView.registerNibForCell(with: FileCell.self)
         collectionView.registerNibForSuplementaryView(with: HeaderView.self, kind: UICollectionView.elementKindSectionHeader)
+        collectionView.registerNibForSuplementaryView(with: FooterView.self, kind: UICollectionView.elementKindSectionFooter)
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.prefetchDataSource = self
     }
 }
 
@@ -47,32 +55,55 @@ extension BrowserDataSource: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let cell = collectionView.dequeueSuplementaryView(with: HeaderView.self, forIndexPath: indexPath, kind: kind)
-        cell.update(with: data?.user)
-        return cell
+        if kind == UICollectionView.elementKindSectionHeader {
+            let cell = collectionView.dequeueSuplementaryView(with: HeaderView.self, forIndexPath: indexPath, kind: kind)
+            cell.delegate = delegate
+            cell.update(with: data?.user)
+            return cell
+        } else {
+            let cell = collectionView.dequeueSuplementaryView(with: FooterView.self, forIndexPath: indexPath, kind: kind)
+            cell.update(with: data?.footer)
+            return cell
+        }
     }
 }
 
 extension BrowserDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width * 0.5, height: 80)
+        return CGSize(width: collectionView.bounds.width / 3 - 10, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        delegate?.didSelect(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let height: CGFloat = data?.user != nil ? 100 : 0
-        return CGSize(width: collectionView.bounds.width, height: height)
+        guard data?.user != nil else { return .zero }
+        return CGSize(width: collectionView.bounds.width, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard data?.footer != nil else { return .zero }
+        return CGSize(width: collectionView.bounds.width, height: 70)
     }
 }
 
+extension BrowserDataSource: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        guard indexPaths.contains(where: isLoadingCell) else { return }
+        delegate?.loadMore()
+    }
+    
+    func isLoadingCell(at indexPath: IndexPath) -> Bool {
+        guard let data = data else { return false }
+        return indexPath.row >= data.entries.count - 4
+    }
+}

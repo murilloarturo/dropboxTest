@@ -15,6 +15,10 @@ class ServiceClient {
     private let path: String
     private var currentDirectory: Directory?
     
+    var hasMoreContent: Bool {
+        return currentDirectory?.hasMore ?? true
+    }
+    
     init(client: BrowserService, path: String, entriesLimit: Int = 20) {
         self.limit = entriesLimit
         self.client = client
@@ -27,7 +31,7 @@ class ServiceClient {
     
     func fetchEntries() -> Single<[Entry]> {
         return client
-                .fetchDirectory(path: path, entriesLimit: nil)
+                .fetchDirectory(path: path, entriesLimit: limit)
                 .do(onSuccess: { [weak self] (directory) in
                     self?.currentDirectory = directory
                 })

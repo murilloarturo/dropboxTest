@@ -11,4 +11,10 @@
 "files" = "Archivos";
 "logout" = "Cerrar sesión";
 "email" = "Correo";
+"numberOfFiles" = "%@ Carpetas, %@ Archivos";
+"sureLogout" = "Estás seguro?";
+"ok" = "Ok";
+"no" = "No";
+"yes" = "Sí";
+"oops" = "Ups!";
 "error" = "Ocurrió un error intente de nuevo más tarde.";

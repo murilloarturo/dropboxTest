@@ -14,14 +14,20 @@ enum LocalizableString: String {
     case files
     case logout
     case email
+    case numberOfFiles
+    case sureLogout
+    case ok
+    case no
+    case yes
+    case oops
     case error
     
     var localized: String {
         return localize()
     }
     
-    func localized(with param: CVarArg) -> String {
-        return String(format: localized, param)
+    func localized(with param: [CVarArg]) -> String {
+        return String(format: localize(), arguments: param)
     }
 }
 

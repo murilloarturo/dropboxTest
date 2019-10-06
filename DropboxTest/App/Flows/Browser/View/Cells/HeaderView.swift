@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import RxSwift
 import SnapKit
+
+protocol HeaderViewDelegate: class {
+    func didTapHeader()
+}
 
 class HeaderView: UICollectionReusableView {
     private weak var imageView: UIImageView?
     private weak var nameLabel: UILabel?
     private weak var emailLabel: UILabel?
     private weak var logoutButton: UIButton?
+    weak var delegate: HeaderViewDelegate?
+    private let disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +33,13 @@ class HeaderView: UICollectionReusableView {
     }
     
     func update(with item: Any?) {
-        
+        guard let section = item as? UserSection else { return }
+        if let url = section.image {
+            imageView?.download(url: url)
+        }
+        nameLabel?.text = section.name
+        emailLabel?.text = section.email
+        logoutButton?.setTitle(section.actionButton, for: .normal)
     }
 }
 
@@ -113,6 +126,14 @@ private extension HeaderView {
         view.snp.makeConstraints { (maker) in
             maker.width.equalTo(100)
         }
+        button
+            .rx.tap.asObservable()
+            .throttle(.milliseconds(250), latest: false, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] () in
+                self?.delegate?.didTapHeader()
+            })
+            .disposed(by: disposeBag)
+        
         return view
     }
 }

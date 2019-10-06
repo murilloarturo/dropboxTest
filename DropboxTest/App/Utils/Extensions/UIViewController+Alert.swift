@@ -9,10 +9,19 @@
 import UIKit
 
 extension UIViewController {
-    func presentAlert(title: String,  message: String, buttonTitle: String, handler: ((UIAlertAction) -> Void)? = nil) {
+    func presentAlert(title: String,
+                      message: String,
+                      leftButtonTitle: String,
+                      leftButtonHandler: ((UIAlertAction) -> Void)? = nil,
+                      rightButtonTitle: String? = nil,
+                      rightButtonHandler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        let action = UIAlertAction(title: buttonTitle, style: UIAlertAction.Style.default, handler: handler)
-        alert.addAction(action)
+        let leftAction = UIAlertAction(title: leftButtonTitle, style: UIAlertAction.Style.default, handler: leftButtonHandler)
+        alert.addAction(leftAction)
+        if let rightTitle = rightButtonTitle {
+            let rightAction = UIAlertAction(title: rightTitle, style: UIAlertAction.Style.default, handler: rightButtonHandler)
+            alert.addAction(rightAction)
+        }
         present(alert, animated: true, completion: nil)
     }
 }

@@ -25,6 +25,7 @@
 		69814881234A32AD008BD841 /* UIImageView+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814880234A32AD008BD841 /* UIImageView+Network.swift */; };
 		69814883234A32D1008BD841 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814882234A32D1008BD841 /* UIViewController+Alert.swift */; };
 		69814885234A3DED008BD841 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814884234A3DED008BD841 /* Browser.swift */; };
+		69814887234A6E62008BD841 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69814886234A6E62008BD841 /* FooterView.swift */; };
 		69BBE16A2348F9D500597DE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBE1692348F9D500597DE1 /* AppDelegate.swift */; };
 		69BBE1712348F9D700597DE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69BBE1702348F9D700597DE1 /* Assets.xcassets */; };
 		69BBE1742348F9D700597DE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BBE1722348F9D700597DE1 /* LaunchScreen.storyboard */; };
@@ -70,6 +71,7 @@
 		69814880234A32AD008BD841 /* UIImageView+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Network.swift"; sourceTree = "<group>"; };
 		69814882234A32D1008BD841 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		69814884234A3DED008BD841 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+		69814886234A6E62008BD841 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		69BBE1662348F9D500597DE1 /* DropboxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropboxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BBE1692348F9D500597DE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69BBE1702348F9D700597DE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				6981486C23497DB4008BD841 /* FileCell.swift */,
 				6981487723499289008BD841 /* HeaderView.swift */,
+				69814886234A6E62008BD841 /* FooterView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				69BBE1C123493E9C00597DE1 /* ServiceClient.swift in Sources */,
 				69814881234A32AD008BD841 /* UIImageView+Network.swift in Sources */,
 				6981486D23497DB4008BD841 /* FileCell.swift in Sources */,
+				69814887234A6E62008BD841 /* FooterView.swift in Sources */,
 				69814883234A32D1008BD841 /* UIViewController+Alert.swift in Sources */,
 				6981486F23498131008BD841 /* AppFont.swift in Sources */,
 				6981486823497BE4008BD841 /* BrowserDataSource.swift in Sources */,

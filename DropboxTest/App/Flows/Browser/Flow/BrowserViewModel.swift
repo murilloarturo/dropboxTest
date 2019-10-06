@@ -21,6 +21,7 @@ class BrowserViewModel {
     private let showUser: Bool
     private var user: User?
     private var entries: [Entry] = []
+    private var isLoading = false
     private let itemsSubject = BehaviorSubject<DirectorySection?>(value: nil)
     var items: Driver<DirectorySection?> {
         return itemsSubject.asDriver(onErrorJustReturn: nil)
@@ -41,14 +42,15 @@ class BrowserViewModel {
         self.service = service
         self.showUser = showUser
         
-        fetchData()
+        bind()
     }
     
     func handle(action: BrowserAction) {
         switch action {
         case .didTapHeader:
             stateSubject.onNext(.logout)
-        case .didSelect(let entry):
+        case .didSelect(let index):
+            let entry = entries[index]
             stateSubject.onNext(.show(entry: entry))
         case .showMore:
             fetchNextPage()
@@ -57,7 +59,22 @@ class BrowserViewModel {
 }
 
 private extension BrowserViewModel {
+    func bind() {
+        Browser.session
+            .authorized
+            .subscribe(onNext: { [weak self] (authorized) in
+                if authorized {
+                    self?.fetchData()
+                } else {
+                    self?.itemsSubject.onNext(nil)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func fetchData() {
+        guard !isLoading else { return }
+        isLoading = true
         if showUser {
             Observable.combineLatest(service.fetchUser().asObservable(), service.fetchEntries().asObservable())
                 .subscribe(onNext: { [weak self] (data) in
@@ -78,6 +95,8 @@ private extension BrowserViewModel {
     }
     
     func fetchNextPage() {
+        guard !isLoading else { return }
+        isLoading = true
         service.fetchNextPage()
             .subscribe(onSuccess: { [weak self] (entries) in
                 self?.handle(newEntries: entries)
@@ -94,21 +113,24 @@ private extension BrowserViewModel {
             userSection = UserSection(image: imageURL, name: user.name, email: user.email, actionButton: LocalizableString.logout.localized)
         }
         let sections = entries.map { (entry) -> EntrySection in
-            return EntrySection(icon: nil, title: entry.name)
+            return EntrySection(icon: entry.icon, title: entry.name)
         }
-        let directorySection = DirectorySection(user: userSection, entries: sections)
+        let footerSection = FooterSection(showMore: service.hasMoreContent, title: totalFilesTitle())
+        let directorySection = DirectorySection(user: userSection, entries: sections, footer: footerSection)
         itemsSubject.onNext(directorySection)
     }
     
     func handle(newEntries: [Entry]) {
         entries.append(contentsOf: newEntries)
         updateItems()
+        isLoading = false
     }
     
     func handle(user: User, entries: [Entry]) {
         self.user = user
         self.entries = entries
         updateItems()
+        isLoading = false
     }
     
     func handle(error: Error) {
@@ -117,6 +139,33 @@ private extension BrowserViewModel {
             break
         default:
             errorSubject.onNext(error)
+        }
+        isLoading = false
+    }
+    
+    func totalFilesTitle() -> String {
+        var numberOfFolders: Int = 0
+        var numberOfFiles: Int = 0
+        entries.forEach { (entry) in
+            switch entry.type {
+            case .folder:
+                numberOfFolders += 1
+            case .file:
+                numberOfFiles += 1
+            }
+        }
+        
+        return LocalizableString.numberOfFiles.localized(with: ["\(numberOfFolders)", "\(numberOfFiles)"])
+    }
+}
+
+extension Entry {
+    var icon: UIImage? {
+        switch type {
+        case .file:
+            return #imageLiteral(resourceName: "fileIcon")
+        case .folder:
+            return #imageLiteral(resourceName: "folderIcon")
         }
     }
 }

@@ -20,7 +20,13 @@ struct EntrySection {
     var title: String
 }
 
+struct FooterSection {
+    var showMore: Bool
+    var title: String
+}
+
 struct DirectorySection {
     var user: UserSection?
     var entries: [EntrySection]
+    var footer: FooterSection
 }

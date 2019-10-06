@@ -11,21 +11,12 @@ import SnapKit
 
 class FileCell: UICollectionViewCell {
     private weak var titleLabel: UILabel?
+    private weak var imageView: UIImageView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let label = UILabel(frame: .zero)
-        addSubview(label)
-        label.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview()
-            maker.leading.equalToSuperview()
-            maker.bottom.equalToSuperview()
-            maker.trailing.equalToSuperview()
-        }
-        label.text = "hola"
-        
-        backgroundColor = .white
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,6 +24,46 @@ class FileCell: UICollectionViewCell {
     }
     
     func update(with item: Any?) {
+        guard let entry = item as? EntrySection else { return }
+        titleLabel?.text = entry.title
+        imageView?.image = entry.icon
+    }
+}
+
+private extension FileCell {
+    func setupUI() {
+        backgroundColor = .white
         
+        let imageContainer = UIView(frame: .zero)
+        let imageView = UIImageView(frame: .zero)
+        self.imageView = imageView
+        imageView.contentMode = .scaleAspectFill
+        imageContainer.addSubview(imageView)
+        imageView.snp.makeConstraints { (maker) in
+            maker.height.equalTo(60)
+            maker.width.equalTo(80)
+            maker.centerX.equalToSuperview()
+            maker.centerY.equalToSuperview()
+        }
+        
+        let label = UILabel(frame: .zero)
+        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingMiddle
+        label.font = AppStyle.font(type: .subtitle)
+        titleLabel = label
+        
+        let stackView = UIStackView(arrangedSubviews: [imageContainer, label])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        addSubview(stackView)
+        stackView.snp.makeConstraints { (maker) in
+            maker.top.equalToSuperview()
+            maker.leading.equalTo(10)
+            maker.bottom.equalToSuperview()
+            maker.trailing.equalTo(-10)
+        }
     }
 }
