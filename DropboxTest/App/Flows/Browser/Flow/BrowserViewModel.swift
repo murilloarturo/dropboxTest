@@ -19,6 +19,7 @@ class BrowserViewModel {
     private let disposeBag = DisposeBag()
     private let service: ServiceClient
     private let showUser: Bool
+    private let title: String?
     private var user: User?
     private var entries: [Entry] = []
     private var isLoading = false
@@ -34,13 +35,18 @@ class BrowserViewModel {
     var error: Observable<Error> {
         return errorSubject.asObservable()
     }
-    var title: String {
-        return showUser ? LocalizableString.home.localized : LocalizableString.files.localized
+    var titleFormatted: String {
+        guard !showUser else {
+            return LocalizableString.home.localized
+        }
+        
+        return title ?? LocalizableString.files.localized
     }
     
-    init(service: ServiceClient, showUser: Bool) {
+    init(service: ServiceClient, showUser: Bool, title: String? = nil) {
         self.service = service
         self.showUser = showUser
+        self.title = title
         
         bind()
     }

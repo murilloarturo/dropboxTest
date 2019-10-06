@@ -28,12 +28,12 @@ enum EntryType: String {
 class Entry {
     let type: EntryType
     let name: String
-    let path: String
+    let path: String?
     let size: Int
     let isDownloadable: Bool
     let share: ShareInfo?
     
-    init(type: EntryType, name: String, path: String, size: Int, isDownloadable: Bool, share: ShareInfo? = nil) {
+    init(type: EntryType, name: String, path: String?, size: Int, isDownloadable: Bool, share: ShareInfo? = nil) {
         self.type = type
         self.name = name
         self.path = path

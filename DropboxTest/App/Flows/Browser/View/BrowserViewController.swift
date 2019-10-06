@@ -68,7 +68,7 @@ private extension BrowserViewController {
     
     func handle(data: DirectorySection?) {
         if let data = data {
-            self.title = self.viewModel.title
+            self.title = self.viewModel.titleFormatted
             self.dataSource.data = data
             self.hideLoader()
         } else {
@@ -85,7 +85,7 @@ private extension BrowserViewController {
     }
     
     func setupUI() {
-        title = viewModel.title
+        title = viewModel.titleFormatted
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [
             .foregroundColor: UIColor.black,

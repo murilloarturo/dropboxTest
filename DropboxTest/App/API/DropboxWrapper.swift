@@ -177,9 +177,9 @@ extension Files.Metadata {
     func parseEntry() -> Entry? {
         switch self {
         case let file as Files.FileMetadata:
-            return Entry(type: .file, name: file.name, path: file.pathLower ?? "", size: Int(file.size), isDownloadable: file.isDownloadable)
+            return Entry(type: .file, name: file.name, path: file.pathLower, size: Int(file.size), isDownloadable: file.isDownloadable)
         case let folder as Files.FolderMetadata:
-            return Entry(type: .folder, name: folder.name, path: folder.pathLower ?? "", size: 0, isDownloadable: false)
+            return Entry(type: .folder, name: folder.name, path: folder.pathLower, size: 0, isDownloadable: false)
         default:
             return nil
         }

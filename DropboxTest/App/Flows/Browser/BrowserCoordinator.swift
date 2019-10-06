@@ -21,8 +21,8 @@ final class BrowserCoordinator: Coordinator {
         let viewModel = BrowserViewModel(service: service, showUser: true)
         let viewController = BrowserViewController(viewModel: viewModel)
         navigation?.viewControllers = [viewController]
-        
-        viewModel.state
+        viewModel
+            .state
             .subscribe(onNext: { [weak self] (state) in
                 self?.handle(state: state)
             })
@@ -38,7 +38,21 @@ private extension BrowserCoordinator {
                 Browser.session.logout()
             })
         case .show(let entry):
-            break
+            showFolderDirectory(entry: entry)
         }
+    }
+    
+    func showFolderDirectory(entry: Entry) {
+        guard let path = entry.path, entry.type == .folder else { return }
+        let service = ServiceClient(client: Browser.session, path: path, entriesLimit: 20)
+        let viewModel = BrowserViewModel(service: service, showUser: false, title: entry.name)
+        let viewController = BrowserViewController(viewModel: viewModel)
+        navigation?.pushViewController(viewController, animated: true)
+        viewModel
+            .state
+            .subscribe(onNext: { [weak self] (state) in
+                self?.handle(state: state)
+            })
+            .disposed(by: disposeBag)
     }
 }
