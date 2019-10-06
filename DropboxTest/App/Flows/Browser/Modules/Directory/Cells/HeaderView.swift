@@ -64,9 +64,9 @@ private extension HeaderView {
         stackView.spacing = 10
         view.addSubview(stackView)
         stackView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(20)
+            maker.top.equalTo(30)
             maker.leading.equalTo(10)
-            maker.bottom.equalTo(-10)
+            maker.bottom.equalTo(-20)
             maker.trailing.equalTo(-10)
         }
     }
@@ -93,11 +93,11 @@ private extension HeaderView {
     
     func labels() -> UIView {
         let nameLabel = UILabel(frame: .zero)
-        nameLabel.text = "Arturo Murillo"
-        nameLabel.font = AppStyle.font(type: .header)
+        nameLabel.font = AppStyle.font(type: .header2)
+        nameLabel.textColor = .black
         self.nameLabel = nameLabel
         let emailLabel = UILabel(frame: .zero)
-        emailLabel.text = "amurillop90@gmail.com"
+        emailLabel.textColor = .black
         emailLabel.font = AppStyle.font(type: .title)
         self.emailLabel = emailLabel
         let labelStackView = UIStackView(arrangedSubviews: [nameLabel, emailLabel])

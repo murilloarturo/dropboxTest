@@ -48,6 +48,7 @@ private extension FileCell {
         }
         
         let extLabel = UILabel(frame: .zero)
+        extLabel.textColor = .black
         extLabel.font = AppStyle.font(type: .title)
         extLabel.textAlignment = .center
         extLabel.minimumScaleFactor = 0.2

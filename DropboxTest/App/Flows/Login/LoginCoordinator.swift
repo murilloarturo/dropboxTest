@@ -22,6 +22,7 @@ final class LoginCoordinator: Coordinator {
     func start() {
         let viewController = LoginViewController()
         let navigation = UINavigationController(rootViewController: viewController)
+        navigation.modalPresentationStyle = .fullScreen
         baseNavigation?.present(navigation, animated: true, completion: nil)
         self.navigation = navigation
         viewController.onState

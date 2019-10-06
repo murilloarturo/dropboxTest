@@ -33,6 +33,14 @@ class BrowserViewController: UIViewController {
         return nil
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +51,7 @@ class BrowserViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        UIApplication.shared.setStatusBarStyle(.default, animated: true)
     }
 }
 
@@ -92,16 +101,21 @@ private extension BrowserViewController {
     
     func setupUI() {
         title = viewModel.titleFormatted
+        navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font: AppStyle.font(type: .header)
         ]
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        }
         
         let layout = ColumnFlowLayout()
         layout.sectionHeadersPinToVisibleBounds = true
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         self.collectionView = collectionView
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { [unowned self] (maker) in
             maker.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)

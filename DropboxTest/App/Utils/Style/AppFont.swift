@@ -27,12 +27,13 @@ enum FontStyle: String {
 
 enum FontType {
     case header
+    case header2
     case title
     case subtitle
     
     var style: FontStyle {
         switch self {
-        case .header:
+        case .header, .header2:
             return .bold
         case .title:
             return .medium
@@ -45,6 +46,8 @@ enum FontType {
         switch self {
         case .header:
             return 28
+        case .header2:
+            return 20
         case .title:
             return 15
         case .subtitle:

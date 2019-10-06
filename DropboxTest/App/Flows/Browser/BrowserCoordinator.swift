@@ -21,6 +21,7 @@ final class BrowserCoordinator: Coordinator {
         let viewModel = BrowserViewModel(service: service, showUser: true)
         let viewController = BrowserViewController(viewModel: viewModel)
         navigation?.viewControllers = [viewController]
+        navigation?.navigationBar.tintColor = .black
         viewModel
             .state
             .subscribe(onNext: { [weak self] (state) in
