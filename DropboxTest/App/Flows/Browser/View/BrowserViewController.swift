@@ -97,8 +97,8 @@ private extension BrowserViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         self.collectionView = collectionView
         view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview()
+        collectionView.snp.makeConstraints { [unowned self] (maker) in
+            maker.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             maker.bottom.equalToSuperview()
             maker.leading.equalToSuperview()
             maker.trailing.equalToSuperview()
