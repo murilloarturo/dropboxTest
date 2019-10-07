@@ -73,6 +73,7 @@ extension DropboxWrapper {
             .resetClients()
         DropboxClientsManager
             .unlinkClients()
+        FileManagerHelper.deleteAllFiles()
         authorizedSubject.onNext(false)
     }
 }

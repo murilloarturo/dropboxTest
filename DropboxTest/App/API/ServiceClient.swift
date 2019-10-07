@@ -57,14 +57,11 @@ class ServiceClient {
     }
     
     func fetchFile() -> Observable<File> {
-        let name = path.replacingOccurrences(of: "/", with: "")
-        let fileManager = FileManager.default
-        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let destURL = directoryURL.appendingPathComponent(name)
+        let destURL = FileManagerHelper.getDirectory(path: path)
         let file = File(path: path,
                         progress: 0,
                         url: destURL)
-        if fileManager.fileExists(atPath: destURL.path) {
+        if FileManagerHelper.fileExists(at: destURL.path) {
             file.progress = 1
             return .just(file)
         } else {
