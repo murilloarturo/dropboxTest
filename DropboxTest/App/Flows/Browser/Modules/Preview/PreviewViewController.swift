@@ -11,6 +11,10 @@ import RxSwift
 import SnapKit
 import QuickLook
 
+enum PreviewViewAction {
+    case didTapInfo
+}
+
 class PreviewViewController: UIViewController {
     private weak var progressView: ProgressView?
     private weak var itemLabel: UILabel?
@@ -48,6 +52,17 @@ private extension PreviewViewController {
         view.backgroundColor = .white
         setupUI()
         bind()
+        setupNavigation()
+    }
+    
+    func setupNavigation() {
+        let image = #imageLiteral(resourceName: "infoIcon")
+        let rightButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(didTapRightButton))
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil), rightButton]
+    }
+    
+    @objc func didTapRightButton() {
+        viewModel.handle(action: .didTapInfo)
     }
     
     func setupUI() {
@@ -94,6 +109,13 @@ private extension PreviewViewController {
             .item
             .drive(onNext: { [weak self] (file) in
                 self?.update(item: file)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .error
+            .subscribe(onNext: { [weak self] (error) in
+                self?.presentAlert(title: LocalizableString.oops.localized, message: error.localizedDescription, leftButtonTitle: LocalizableString.ok.localized)
             })
             .disposed(by: disposeBag)
     }

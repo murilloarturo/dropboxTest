@@ -21,7 +21,7 @@ final class BrowserCoordinator: Coordinator {
         let viewModel = BrowserViewModel(service: service, showUser: true)
         let viewController = BrowserViewController(viewModel: viewModel)
         navigation?.viewControllers = [viewController]
-        navigation?.navigationBar.tintColor = .black
+        navigation?.navigationBar.tintColor = AppStyle.palette.blue
         viewModel
             .state
             .subscribe(onNext: { [weak self] (state) in
@@ -63,5 +63,23 @@ private extension BrowserCoordinator {
         let viewModel = PreviewViewModel(service: service)
         let viewController = PreviewViewController(viewModel: viewModel)
         navigation?.pushViewController(viewController, animated: true)
+        viewModel
+            .state
+            .subscribe(onNext: { [weak self] (state) in
+                guard let self = self else { return }
+                switch state {
+                case .showInfo(let file):
+                    self.showFileDetails(file: file)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func showFileDetails(file: File) {
+        let service = ServiceClient(client: Browser.session, path: file.path)
+        let viewModel = FileDetailsViewModel(service: service)
+        let viewController = FileDetailsViewController(viewModel: viewModel)
+        let detailsNavigation = UINavigationController(rootViewController: viewController)
+        navigation?.present(detailsNavigation, animated: true, completion: nil)
     }
 }

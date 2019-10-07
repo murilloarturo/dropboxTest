@@ -11,6 +11,7 @@ import UIKit
 struct ColorPalette {
     let black = UIColor(red: 67, green: 72, blue: 77)
     let blue = UIColor(red: 0, green: 96, blue: 255)
+    let grey = UIColor(red: 230, green: 230, blue: 230)
 }
 
 extension UIColor {

@@ -10,6 +10,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+enum PreviewViewState {
+    case showInfo(file: File)
+}
+
 class PreviewViewModel {
     private let disposeBag = DisposeBag()
     private let service: ServiceClient
@@ -21,11 +25,23 @@ class PreviewViewModel {
     var error: Observable<Error> {
         return errorSubject.asObservable()
     }
+    private let stateSubject = PublishSubject<PreviewViewState>()
+    var state: Observable<PreviewViewState> {
+        return stateSubject.asObservable()
+    }
     
     init(service: ServiceClient) {
         self.service = service
         
         bind()
+    }
+    
+    func handle(action: PreviewViewAction) {
+        switch action {
+        case .didTapInfo:
+            guard let file = itemSubject.value else { return }
+            stateSubject.onNext(.showInfo(file: file))
+        }
     }
 }
 

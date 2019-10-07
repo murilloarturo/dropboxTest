@@ -23,6 +23,11 @@ enum LocalizableString: String {
     case yes
     case oops
     case error
+    case fileInfo
+    case name
+    case size
+    case dimensions
+    case modified
     
     var localized: String {
         return localize()

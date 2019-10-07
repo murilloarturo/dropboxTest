@@ -199,11 +199,8 @@ extension DropboxWrapper {
                         var thumbnails: [Entry] = []
                         newEntries.enumerated().forEach { (item) in
                             let entry = entries[item.offset]
-                            switch item.element {
-                            case .success(let data):
+                            if case .success(let data) = item.element {
                                 entry.thubmnail = data.thumbnail
-                            default:
-                                break
                             }
                             thumbnails.append(entry)
                         }
@@ -215,6 +212,36 @@ extension DropboxWrapper {
                     }
                 }
             
+            return Disposables.create()
+        })
+    }
+    
+    func fetchDetails(path: String) -> Single<FileDetails> {
+        guard let client = currentClient() else { return .error(RequestError.unauthorized) }
+        return .create(subscribe: { (single) -> Disposable in
+            client
+                .files
+                .getMetadata(path: path, includeMediaInfo: true)
+                .response { [weak self] (response, error) in
+                    guard let self = self else { return }
+                    if let response = response as? Files.FileMetadata {
+                        var dimensions: FileDimensions? = nil
+                        if case .metadata(let data) = response.mediaInfo {
+                            guard let size = data.dimensions else { return }
+                            dimensions = FileDimensions(height: Int(size.height), width: Int(size.width))
+                        }
+                        let details = FileDetails(name: response.name,
+                                                  size: Int(response.size),
+                                                  modified: response.clientModified,
+                                                  dimensions: dimensions)
+                        single(.success(details))
+                    } else if let error = error {
+                        let serviceError = error.serviceError()
+                        self.handle(error: serviceError)
+                        single(.error(serviceError))
+                    }
+                }
+                
             return Disposables.create()
         })
     }

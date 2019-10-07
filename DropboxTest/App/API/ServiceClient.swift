@@ -73,4 +73,8 @@ class ServiceClient {
     func fetchThumbnails(from entries: [Entry]) -> Single<[Entry]> {
         return client.fetchThumbnails(entries: entries)
     }
+    
+    func fetchDetails() -> Single<FileDetails> {
+        return client.fetchDetails(path: path)
+    }
 }

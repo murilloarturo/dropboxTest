@@ -20,3 +20,9 @@
 "yes" = "Yes";
 "oops" = "Ooopss!";
 "error" = "An error ocurred please try again later.";
+"fileInfo" = "File info";
+"name" = "Name";
+"size" = "Size";
+"dimensions" = "Dimensions";
+"modified" = "Modified";
+
