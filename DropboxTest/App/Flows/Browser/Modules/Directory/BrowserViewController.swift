@@ -50,7 +50,6 @@ class BrowserViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        collectionView?.setContentOffset(.zero, animated: false)
         navigationController?.navigationBar.prefersLargeTitles = true
         UIApplication.shared.setStatusBarStyle(.default, animated: true)
     }
