@@ -83,12 +83,13 @@ private extension BrowserViewController {
     
     func handle(data: DirectorySection?) {
         if let data = data {
-            self.title = self.viewModel.titleFormatted
-            self.dataSource.data = data
-            self.hideLoader()
+            title = self.viewModel.titleFormatted
+            dataSource.data = data
+            hideLoader()
         } else {
-            self.loaderView?.alpha = 1
-            self.activityIndicator?.startAnimating()
+            collectionView?.setContentOffset(.zero, animated: false)
+            loaderView?.alpha = 1
+            activityIndicator?.startAnimating()
         }
     }
     

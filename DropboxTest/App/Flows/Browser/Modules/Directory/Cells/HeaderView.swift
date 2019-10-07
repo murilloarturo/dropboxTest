@@ -32,8 +32,14 @@ class HeaderView: UICollectionReusableView {
         return nil
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView?.image = nil
+    }
+    
     func update(with item: Any?) {
         guard let section = item as? UserSection else { return }
+        imageView?.image = nil
         if let url = section.image {
             imageView?.download(url: url)
         }
