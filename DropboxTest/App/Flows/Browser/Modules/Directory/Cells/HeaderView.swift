@@ -125,6 +125,7 @@ private extension HeaderView {
             maker.width.equalToSuperview()
             maker.height.equalTo(40)
             maker.centerY.equalToSuperview()
+            maker.centerX.equalToSuperview()
         }
         view.snp.makeConstraints { (maker) in
             maker.width.equalTo(100)
