@@ -101,9 +101,10 @@ private extension BrowserViewModel {
     }
     
     func fetchNextPage() {
-        guard !isLoading else { return }
+        guard !isLoading, service.hasMoreContent else { return }
         isLoading = true
-        service.fetchNextPage()
+        service
+            .fetchNextPage()
             .subscribe(onSuccess: { [weak self] (entries) in
                 self?.handle(newEntries: entries)
             }) { [weak self] (error) in
@@ -119,7 +120,7 @@ private extension BrowserViewModel {
             userSection = UserSection(image: imageURL, name: user.name, email: user.email, actionButton: LocalizableString.logout.localized)
         }
         let sections = entries.map { (entry) -> EntrySection in
-            return EntrySection(icon: entry.icon, title: entry.name, fileType: entry.typeExtension)
+            return EntrySection(icon: entry.icon, title: entry.name, fileType: entry.typeExtension, thumbnailIcon: entry.thubmnailImage)
         }
         let footerSection = FooterSection(showMore: service.hasMoreContent, title: totalFilesTitle())
         let directorySection = DirectorySection(user: userSection, entries: sections, footer: footerSection)
@@ -183,5 +184,13 @@ extension Entry {
         case .folder:
             return #imageLiteral(resourceName: "folderIcon")
         }
+    }
+    
+    var thubmnailImage: UIImage? {
+        guard let thubmnail = thubmnail,
+            let data = Data(base64Encoded: thubmnail, options: Data.Base64DecodingOptions.ignoreUnknownCharacters) else {
+                return nil
+        }
+        return UIImage(data: data)
     }
 }

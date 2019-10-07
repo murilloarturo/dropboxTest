@@ -29,16 +29,20 @@ class ServiceClient {
         return client.fetchUser()
     }
     
-    func fetchEntries() -> Single<[Entry]> {
+    func fetchEntries(appendThumbnails: Bool = true) -> Single<[Entry]> {
         return client
                 .fetchDirectory(path: path, entriesLimit: limit)
                 .do(onSuccess: { [weak self] (directory) in
                     self?.currentDirectory = directory
                 })
                 .map { $0.entries }
+                .flatMap { [weak self] (entries) -> Single<[Entry]> in
+                    guard let self = self, appendThumbnails else { return .just(entries) }
+                    return self.fetchThumbnails(from: entries)
+                }
     }
     
-    func fetchNextPage() -> Single<[Entry]> {
+    func fetchNextPage(appendThumbnails: Bool = true) -> Single<[Entry]> {
         guard let directory = currentDirectory, directory.hasMore else { return .just([]) }
         return client
                 .fetchNextDirectoryPage(cursor: directory.cursor)
@@ -46,6 +50,10 @@ class ServiceClient {
                     self?.currentDirectory = directory
                 })
                 .map { $0.entries }
+                .flatMap { [weak self] (entries) -> Single<[Entry]> in
+                    guard let self = self, appendThumbnails else { return .just(entries) }
+                    return self.fetchThumbnails(from: entries)
+                }
     }
     
     func fetchFile() -> Observable<File> {
@@ -63,5 +71,9 @@ class ServiceClient {
             return client
                 .fetchFile(file)
         }
+    }
+    
+    func fetchThumbnails(from entries: [Entry]) -> Single<[Entry]> {
+        return client.fetchThumbnails(entries: entries)
     }
 }

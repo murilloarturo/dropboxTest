@@ -179,6 +179,44 @@ extension DropboxWrapper {
             return Disposables.create()
         })
     }
+    
+    func fetchThumbnails(entries: [Entry]) -> Single<[Entry]> {
+        guard let client = currentClient() else { return .error(RequestError.unauthorized) }
+        return .create(subscribe: { (single) -> Disposable in
+            let batchEntries = entries.compactMap { (entry) -> Files.ThumbnailArg? in
+                guard let path = entry.path else { return nil }
+                return Files.ThumbnailArg(path: path, size: .w480h320)
+            }
+            client
+                .files
+                .getThumbnailBatch(entries: batchEntries)
+                .response { [weak self] (response, error) in
+                    guard let self = self else { return }
+                    if let response = response {
+                        let newEntries = response.entries
+                        guard entries.count == newEntries.count else { return single(.success(entries)) }
+                        var thumbnails: [Entry] = []
+                        newEntries.enumerated().forEach { (item) in
+                            let entry = entries[item.offset]
+                            switch item.element {
+                            case .success(let data):
+                                entry.thubmnail = data.thumbnail
+                            default:
+                                break
+                            }
+                            thumbnails.append(entry)
+                        }
+                        single(.success(thumbnails))
+                    } else if let error = error {
+                        let serviceError = error.serviceError()
+                        self.handle(error: serviceError)
+                        single(.error(serviceError))
+                    }
+                }
+            
+            return Disposables.create()
+        })
+    }
 }
 
 //MARK: - Private

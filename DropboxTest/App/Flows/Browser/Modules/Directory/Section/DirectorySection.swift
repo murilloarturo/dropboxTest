@@ -19,6 +19,7 @@ struct EntrySection {
     var icon: UIImage?
     var title: String
     var fileType: String?
+    var thumbnailIcon: UIImage?
 }
 
 struct FooterSection {

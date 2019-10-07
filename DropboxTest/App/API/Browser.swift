@@ -20,7 +20,8 @@ protocol BrowserService {
     func fetchUser() -> Single<User>
     func fetchDirectory(path: String, entriesLimit: Int?) -> Single<Directory>
     func fetchNextDirectoryPage(cursor: String) -> Single<Directory>
-    func fetchFile(_ file: File) -> Observable<File> 
+    func fetchFile(_ file: File) -> Observable<File>
+    func fetchThumbnails(entries: [Entry]) -> Single<[Entry]>
 }
 
 protocol BrowserServiceClient: BrowserSetup, BrowserService {

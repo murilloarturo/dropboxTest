@@ -32,6 +32,7 @@ class Entry {
     let size: Int
     let isDownloadable: Bool
     let share: ShareInfo?
+    var thubmnail: String?
     
     var typeExtension: String? {
         guard type == .file else { return nil }

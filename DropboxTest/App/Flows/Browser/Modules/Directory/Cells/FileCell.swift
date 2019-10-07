@@ -29,6 +29,10 @@ class FileCell: UICollectionViewCell {
         titleLabel?.text = entry.title
         imageView?.image = entry.icon
         extensionLabel?.text = entry.fileType?.uppercased()
+        if let thubmnail = entry.thumbnailIcon {
+            imageView?.image = thubmnail
+            extensionLabel?.isHidden = true
+        }
     }
 }
 
