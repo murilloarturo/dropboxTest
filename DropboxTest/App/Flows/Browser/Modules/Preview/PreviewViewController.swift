@@ -56,9 +56,27 @@ private extension PreviewViewController {
     }
     
     func setupNavigation() {
-        let image = #imageLiteral(resourceName: "infoIcon")
-        let rightButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(didTapRightButton))
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil), rightButton]
+        let image = #imageLiteral(resourceName: "infoIcon").withRenderingMode(.alwaysTemplate)
+        let buttonView = UIView(frame: .zero)
+        let buttonImage = UIImageView(image: image)
+        buttonImage.tintColor = AppStyle.palette.blue
+        buttonImage.contentMode = .scaleAspectFill
+        buttonView.addSubview(buttonImage)
+        buttonImage.snp.makeConstraints { (maker) in
+            maker.centerX.equalToSuperview()
+            maker.centerY.equalToSuperview()
+            maker.width.equalTo(20)
+            maker.height.equalTo(20)
+        }
+        let actionButton = UIButton(frame: .zero)
+        actionButton.setTitle(nil, for: .normal)
+        actionButton.addTarget(self, action: #selector(didTapRightButton), for: .touchUpInside)
+        buttonView.addSubview(actionButton)
+        actionButton.snp.makeConstraints { (maker) in
+            maker.edges.equalToSuperview()
+        }
+        let rightButton = UIBarButtonItem(customView: buttonView)
+        navigationItem.rightBarButtonItem = rightButton
     }
     
     @objc func didTapRightButton() {

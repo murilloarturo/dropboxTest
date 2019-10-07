@@ -36,10 +36,7 @@ private extension ProgressView {
         addSubview(view)
         view.backgroundColor = AppStyle.palette.blue
         view.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview()
-            maker.leading.equalToSuperview()
-            maker.bottom.equalToSuperview()
-            maker.trailing.equalToSuperview()
+            maker.edges.equalToSuperview()
         }
     }
 }

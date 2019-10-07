@@ -49,10 +49,7 @@ private extension HeaderView {
         addSubview(view)
         view.backgroundColor = .white
         view.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview()
-            maker.leading.equalToSuperview()
-            maker.trailing.equalToSuperview()
-            maker.bottom.equalToSuperview()
+            maker.edges.equalToSuperview()
         }
         view.setupRoundedCorners(radius: 10, corners: [.bottomLeft, .bottomRight])
         view.setupShadow(radius: 6, opacity: 0.4, offset: 3)

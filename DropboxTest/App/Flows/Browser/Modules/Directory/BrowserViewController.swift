@@ -139,10 +139,7 @@ private extension BrowserViewController {
         }
         self.view.addSubview(view)
         view.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview()
-            maker.leading.equalToSuperview()
-            maker.bottom.equalToSuperview()
-            maker.trailing.equalToSuperview()
+            maker.edges.equalToSuperview()
         }
         self.loaderView = view
     }
