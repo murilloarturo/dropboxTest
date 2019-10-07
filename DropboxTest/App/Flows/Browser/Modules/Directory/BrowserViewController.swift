@@ -102,7 +102,6 @@ private extension BrowserViewController {
     
     func setupUI() {
         title = viewModel.titleFormatted
-        navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [
             .foregroundColor: UIColor.black,
